@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(100),
       allowNull: false
     },
-    password: {
+    passwordHash: {
       type: DataTypes.STRING(64),
       allowNull: false
     },
@@ -26,37 +26,17 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue: "user"
     },
-    secret: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      defaultValue: DataTypes.UUIDV4
-    },
-    phone: {
-      type: DataTypes.STRING(30),
-      allowNull: true
-    },
-    address: {
-      type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    reg: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW
-    },
-    last: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
     status: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    lastLoginAt:{
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     }
+    
   }
   ,{
     timestamps: true,

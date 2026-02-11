@@ -1,0 +1,57 @@
+const { DataTypes } = require("sequelize");
+const {v4 : uuidv4} = require("uuid");
+
+module.exports = (sequelize) => {
+  const Box = sequelize.define("boxes", {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
+    },
+    userId:{
+        type: DataTypes.UUID,
+        allowNull: false
+    },
+    code:{
+      type: DataTypes.STRING(10),
+      allowNull: false
+    },
+    labelType:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lengthCm:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    widthCm:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    heightCm:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    maxWeightKg:{
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    location:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    note:{
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    status:{
+      type: DataTypes.STRING,
+      allowNull:false
+    }
+  },
+{
+  timestamps: true
+})
+
+  return Box;
+};

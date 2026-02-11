@@ -10,6 +10,9 @@ const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.passw
   logging: dbConfig.logging
 });
 const User = require('./user.model.js')(sequelize);
+const Box = require('./box.model.js')(sequelize);
+const Boxitem = require('./boxitem.model.js')(sequelize);
+const Item = require('./item.model.js')(sequelize);
 
 const operatorMap = {
     eq: Op.eq,
@@ -21,4 +24,4 @@ const operatorMap = {
     not: Op.not
 }
 
-module.exports = {sequelize, User, operatorMap};
+module.exports = {sequelize, User, Box, Boxitem, Item, operatorMap};
