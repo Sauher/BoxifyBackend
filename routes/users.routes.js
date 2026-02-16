@@ -67,14 +67,13 @@ router.post("/login", async (req, res) => {
 
 router.post("/registration", async (req, res) => {
     try{
-    const { name, email, password, confirm} = req.body;
+    const { name, email, password} = req.body;
 
-    /*if (password !== confirm) {
-        return res.status(400).json({ message: "Passwords do not match" });
-    }*/
-
+    if (await User.findOne({ where: { email } })) {
+        return res.status(400).json({ message: "Email already in use" });
+    }
     const user =  await User.create({ name, email, password});
-    res.status(201).json(user);
+    res.status(201).json({ user ,message: "User registered successfully" });
     } catch(e){
         res.status(500).json({ message: 'Registration failed', error: e.message });
     }
