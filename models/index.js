@@ -1,6 +1,7 @@
 const { Op, Sequelize} = require("sequelize");
 
 const dbConfig = require("../config/database.js");
+const db = {};
 
 console.log(dbConfig);
 const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
@@ -13,6 +14,12 @@ const User = require('./user.model.js')(sequelize);
 const Box = require('./box.model.js')(sequelize);
 const Boxitem = require('./boxitem.model.js')(sequelize);
 const Item = require('./item.model.js')(sequelize);
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
 const operatorMap = {
     eq: Op.eq,

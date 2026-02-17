@@ -56,6 +56,11 @@ module.exports = (sequelize) => {
 {
   timestamps: true
 })
-
+  Box.associate = (models) => {
+    Box.belongsTo(models.User, {
+      foreignKey: "userId",
+      as: "user",
+    });
+  }
   return Box;
 };
