@@ -27,8 +27,8 @@ router.get("/:field/:op/:value", async (req, res) => {
                 [operatorMap[op]]: op === 'lk' ? `%${value}%` : value
             }
         }
-        const Boxs = await Box.findAll({ where });
-        res.status(200).json(Boxs);
+        const Boxes = await Box.findAll({ where });
+        res.status(200).json(Boxes);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
