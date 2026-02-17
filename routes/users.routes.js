@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
             await user.update({ lastLogin: new Date() });
 
             const token = generateToken(user);
-            res.status(200).json({ token });
+            res.status(200).json({ token, id: user.id });
         } else {
             res.status(401).json({ message: "Invalid email or password" });
         }
