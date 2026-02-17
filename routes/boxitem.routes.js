@@ -6,8 +6,8 @@ const {authenticate} = require("../middleware/auth_middleware");
 
 router.get("/", async (req, res) => {
     Boxitem.findAll()
-        .then(Boxitems => {
-            res.json(Boxitems);
+        .then(boxitems => {
+            res.json(boxitems);
         })
         .catch(err => {
             res.status(500).json({ error: err.message });
@@ -36,9 +36,9 @@ router.get("/:field/:op/:value", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    const Boxitem = await Boxitem.findByPk(id);
-    if (Boxitem) {
-        res.json(Boxitem);
+    const boxitem = await Boxitem.findByPk(id);
+    if (boxitem) {
+        res.json(boxitem);
     } else {
         res.status(404).json({ message: "Boxitem not found" });
     }
@@ -46,8 +46,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/",authenticate, async (req, res) => {
     try {
-        const Boxitem = await Boxitem.create(req.body);
-        res.status(201).json(Boxitem);
+        const boxitem = await Boxitem.create(req.body);
+        res.status(201).json(boxitem);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -55,22 +55,22 @@ router.post("/",authenticate, async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
     const id = req.params.id;
-    const Boxitem = await Boxitem.findByPk(id);
-    if (!Boxitem) {
+    const boxitem = await Boxitem.findByPk(id);
+    if (!boxitem) {
         return res.status(404).json({ message: "Boxitem not found" });
     }
-    const updatedBoxitem = await Boxitem.update(req.body);
-res.status(200).json(updatedBoxitem);
+    const updatedBoxitem = await boxitem.update(req.body);
+    res.status(200).json(updatedBoxitem);
 });
 
 
 router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    const Boxitem = await Boxitem.findByPk(id);
-    if (!Boxitem) {
+    const boxitem = await Boxitem.findByPk(id);
+    if (!boxitem) {
         return res.status(404).json({ message: "Boxitem not found" });
     }
-    await Boxitem.destroy();
+    await boxitem.destroy();
     res.status(200).json({ message: "Boxitem deleted successfully" });
 });
 

@@ -35,9 +35,9 @@ router.get("/:field/:op/:value", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    const Item = await Item.findByPk(id);
-    if (Item) {
-        res.json(Item);
+    const item = await Item.findByPk(id);
+    if (item) {
+        res.json(item);
     } else {
         res.status(404).json({ message: "Item not found" });
     }
@@ -45,8 +45,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const Item = await Item.create(req.body);
-        res.status(201).json(Item);
+        const item = await Item.create(req.body);
+        res.status(201).json(item);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -54,22 +54,22 @@ router.post("/", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
     const id = req.params.id;
-    const Item = await Item.findByPk(id);
-    if (!Item) {
+    const item = await Item.findByPk(id);
+    if (!item) {
         return res.status(404).json({ message: "Item not found" });
     }
-    const updatedItem = await Item.update(req.body);
-res.status(200).json(updatedItem);
+    const updatedItem = await item.update(req.body);
+    res.status(200).json(updatedItem);
 });
 
 
 router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    const Item = await Item.findByPk(id);
-    if (!Item) {
+    const item = await Item.findByPk(id);
+    if (!item) {
         return res.status(404).json({ message: "Item not found" });
     }
-    await Item.destroy();
+    await item.destroy();
     res.status(200).json({ message: "Item deleted successfully" });
 });
 
