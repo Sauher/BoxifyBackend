@@ -15,6 +15,11 @@ const Box = require('./box.model.js')(sequelize);
 const Boxitem = require('./boxitem.model.js')(sequelize);
 const Item = require('./item.model.js')(sequelize);
 
+db.User = User;
+db.Box = Box;
+db.Boxitem = Boxitem;
+db.Item = Item;
+
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

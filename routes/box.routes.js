@@ -36,18 +36,18 @@ router.get("/:field/:op/:value", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     const id = req.params.id;
-    const Box = await Box.findByPk(id);
-    if (Box) {
-        res.json(Box);
+    const box = await Box.findByPk(id);
+    if (box) {
+        res.json(box);
     } else {
         res.status(404).json({ message: "Box not found" });
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/",authenticate, async (req, res) => {
     try {
-        const Box = await Box.create(req.body);
-        res.status(201).json(Box);
+    const box = await Box.create(req.body);
+    res.status(201).json(box);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -55,22 +55,22 @@ router.post("/", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
     const id = req.params.id;
-    const Box = await Box.findByPk(id);
-    if (!Box) {
+    const box = await Box.findByPk(id);
+    if (!box) {
         return res.status(404).json({ message: "Box not found" });
     }
-    const updatedBox = await Box.update(req.body);
-res.status(200).json(updatedBox);
+    const updatedBox = await box.update(req.body);
+    res.status(200).json(updatedBox);
 });
 
 
 router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    const Box = await Box.findByPk(id);
-    if (!Box) {
+    const box = await Box.findByPk(id);
+    if (!box) {
         return res.status(404).json({ message: "Box not found" });
     }
-    await Box.destroy();
+    await box.destroy();
     res.status(200).json({ message: "Box deleted successfully" });
 });
 

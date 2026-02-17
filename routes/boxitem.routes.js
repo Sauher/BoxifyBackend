@@ -44,7 +44,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/",authenticate, async (req, res) => {
     try {
         const Boxitem = await Boxitem.create(req.body);
         res.status(201).json(Boxitem);
