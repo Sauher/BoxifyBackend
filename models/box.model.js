@@ -12,21 +12,17 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     userId:{
         type: DataTypes.UUID,
         allowNull: false
     },
     code:{
       type: DataTypes.STRING(10),
-      allowNull: false
+      allowNull: true
     },
     labelType:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     lengthCm:{
       type: DataTypes.INTEGER,
@@ -46,7 +42,7 @@ module.exports = (sequelize) => {
     },
     location:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     note:{
       type: DataTypes.TEXT,
@@ -54,7 +50,7 @@ module.exports = (sequelize) => {
     },
     status:{
       type: DataTypes.STRING,
-      allowNull:false
+      allowNull:true
     }
   },
 {
