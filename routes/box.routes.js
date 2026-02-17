@@ -6,8 +6,8 @@ const {authenticate} = require("../middleware/auth_middleware");
 
 router.get("/", async (req, res) => {
     Box.findAll()
-        .then(Boxs => {
-            res.json(Boxs);
+        .then(Boxes => {
+            res.json(Boxes);
         })
         .catch(err => {
             res.status(500).json({ error: err.message });
