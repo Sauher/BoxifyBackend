@@ -21,7 +21,7 @@ app.use('/mail', mailRoutes)
 app.use('/upload',uploadRoutes)
 app.use('/boxes', BoxRoutes)
 app.use('/items', ItemRoutes)
-app.use('/box-items', BoxItemRoutes)
+app.use('/box_items', BoxItemRoutes)
 
 app.use('/uploads', express.static('uploads'))
 
