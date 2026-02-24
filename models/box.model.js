@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         allowNull: false
     },
     code:{
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(256),
       allowNull: true
     },
     labelType:{
