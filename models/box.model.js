@@ -61,6 +61,11 @@ module.exports = (sequelize) => {
       foreignKey: "userId",
       as: "user",
     });
+    Box.hasMany(models.Boxitem, {
+      foreignKey: "boxId",
+      onDelete: "CASCADE",
+      hooks: true
+    });
   }
   return Box;
 };

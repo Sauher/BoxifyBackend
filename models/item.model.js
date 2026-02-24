@@ -49,5 +49,13 @@ module.exports = (sequelize) => {
   timestamps: true
 })
 
+  Item.associate = (models) => {
+    Item.hasMany(models.Boxitem, {
+      foreignKey: "itemId",
+      onDelete: "CASCADE",
+      hooks: true
+    });
+  };
+
   return Item;
 };

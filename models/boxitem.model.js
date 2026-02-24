@@ -26,5 +26,16 @@ module.exports = (sequelize) => {
   timestamps: true
 })
 
+  Boxitem.associate = (models) => {
+    Boxitem.belongsTo(models.Box, {
+      foreignKey: "boxId",
+      onDelete: "CASCADE"
+    });
+    Boxitem.belongsTo(models.Item, {
+      foreignKey: "itemId",
+      onDelete: "CASCADE"
+    });
+  };
+
   return Boxitem;
 };
