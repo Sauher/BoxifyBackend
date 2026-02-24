@@ -9,7 +9,7 @@ function ensureSecret(){
 
 function generateToken(user){
     const secret = ensureSecret();
-    const token = jwt.sign({ id: user.id }, secret, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user.id, role: user.role }, secret, { expiresIn: "1h" });
     return token;
 }
 
