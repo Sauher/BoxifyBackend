@@ -1,3 +1,5 @@
+const ejs = require('ejs');
+
 const app = require('./config/app');
 const {sequelize} = require('./models/index');
 (async () => {
